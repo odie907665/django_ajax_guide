@@ -14,20 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from my_app.views import (
-    indexView,
-    postFriend, 
-    checkNickName,
-    FriendView
-)
+from django.urls import path, include
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', indexView),
-    path('post/ajax/friend', postFriend, name = "post_friend"),
-    path('get/ajax/validate/nickname', checkNickName, name = "validate_nickname"),
-
-    path("cbv/", FriendView.as_view(), name = "friend_cbv")
-
+    path('', include('my_app.urls')),
 ]
